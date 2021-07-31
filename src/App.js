@@ -72,7 +72,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Do you think your Birthday is Lucky?</h1>
+      <h1>Check if your Birthday is Lucky?</h1>
       {/* scroll down feature to be added */}
       <input
         type="date"
