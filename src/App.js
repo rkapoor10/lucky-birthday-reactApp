@@ -1,7 +1,28 @@
 import React, { useState } from "react";
 import "./styles.css";
+import Lottie from "react-lottie";
+import lucky from "./lotties/lucky.json";
+import notLucky from "./lotties/notLucky.json";
 
 export default function App() {
+  const luckyOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: lucky,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
+
+  const notLuckyOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: notLucky,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
+
   const [dobInput, setDobInput] = useState([]);
   const [luckyNoInput, setLuckyNoInput] = useState(0);
   const [output, setOutput] = useState("");
@@ -11,7 +32,10 @@ export default function App() {
     if (dobArray[0] >= 2021) {
       setOutput(
         <>
-          <div>Birthday's can only be celebrated after you are born</div>
+          <div>
+            Birthday's can only be celebrated after you are born. Enter a valid
+            date of Birth{" "}
+          </div>
         </>
       );
     } else {
@@ -24,13 +48,25 @@ export default function App() {
       luck = sum % Number(luckyNoInput);
       console.log(luck);
       if (luck === 0) {
-        setOutput(<div>You are a lucky person</div>);
+        setOutput(
+          <>
+            <div>
+              <Lottie options={luckyOptions} height={200} width={200} />
+            </div>
+            <div>You are a lucky person</div>
+          </>
+        );
       } else {
         setOutput(
-          <div>
-            But remember "Luck is what happens when preparation meets
-            opportunity!"
-          </div>
+          <>
+            <div>
+              <Lottie options={notLuckyOptions} height={200} width={200} />
+            </div>
+            <div>
+              But remember "Luck is what happens when preparation meets
+              opportunity!"
+            </div>
+          </>
         );
       }
     }
