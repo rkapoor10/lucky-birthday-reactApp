@@ -29,13 +29,10 @@ export default function App() {
 
   function onClickHandler() {
     const dobArray = dobInput.split("-");
-    if (dobArray[0] >= 2021) {
+    if (dobArray[0] >= 9999) {
       setOutput(
         <>
-          <div>
-            Birthday's can only be celebrated after you are born. Enter a valid
-            date of Birth{" "}
-          </div>
+          <div>Enter a valid date of Birth </div>
         </>
       );
     } else {
@@ -44,6 +41,7 @@ export default function App() {
         sum = sum + Number(element);
         return sum;
       });
+      console.log(sum);
       let luck = 0;
       luck = sum % Number(luckyNoInput);
       console.log(luck);
@@ -78,6 +76,7 @@ export default function App() {
       {/* scroll down feature to be added */}
       <input
         type="date"
+        required
         onChange={(event) => {
           setDobInput(event.target.value);
         }}
