@@ -5,6 +5,11 @@ import lucky from "./lotties/lucky.json";
 import notLucky from "./lotties/notLucky.json";
 
 export default function App() {
+  const [alertBox, setAlertBox] = useState("flex");
+  const [dobInput, setDobInput] = useState([]);
+  const [luckyNoInput, setLuckyNoInput] = useState(0);
+  const [output, setOutput] = useState("");
+
   const luckyOptions = {
     loop: true,
     autoplay: true,
@@ -22,10 +27,6 @@ export default function App() {
       preserveAspectRatio: "xMidYMid slice"
     }
   };
-
-  const [dobInput, setDobInput] = useState([]);
-  const [luckyNoInput, setLuckyNoInput] = useState(0);
-  const [output, setOutput] = useState("");
 
   function onClickHandler() {
     const dobArray = dobInput.split("-");
@@ -73,6 +74,24 @@ export default function App() {
   return (
     <div className="App">
       <h1>Check if your Birthday is Lucky?</h1>
+      <div className="box" style={{ display: `${alertBox}` }}>
+        <strong>Privacy: We are not storing your DOB</strong>
+        <div
+          onClick={() => {
+            setAlertBox("none");
+          }}
+          style={{
+            cursor: "pointer",
+            paddingLeft: "1.7rem",
+            fontSize: "0.7rem"
+          }}
+        >
+          <span role="img" aria-labelledby="crossIcon">
+            ❌
+          </span>
+        </div>
+      </div>
+
       {/* scroll down feature to be added */}
       <input
         type="date"
