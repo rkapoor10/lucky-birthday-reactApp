@@ -34,14 +34,14 @@ body {
   background-color: whitesmoke;
 }
 
-.container a {
+.container > a {
   font-size: 1.3rem;
   display: block;
   color: var(--secondary-color);
   padding: 2rem 0 2rem;
 }
 
-.container a:hover {
+.container > a:hover {
   font-size: 1.35rem;
 }
 
@@ -62,6 +62,7 @@ button {
   background-color: var(--secondary-color);
   color: white;
   padding: 0.5rem;
+  margin-bottom: 1rem;
   border-radius: 0.3rem;
   font-size: 1.2rem;
 }
@@ -80,4 +81,21 @@ button {
   content: "\275E";
   color: var(--secondary-color);
   font-size: 2rem;
+}
+footer {
+  padding-top: 9vh;
+}
+
+footer ul {
+  list-style: none;
+  padding-inline-start: 0px;
+}
+
+footer li {
+  display: inline;
+}
+
+li > a {
+  text-decoration: none;
+  color: var(--secondary-color);
 }
