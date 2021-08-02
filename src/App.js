@@ -7,7 +7,7 @@ import cake from "/src/cake.svg";
 
 export default function App() {
   const [alertBox, setAlertBox] = useState("flex");
-  const [dobInput, setDobInput] = useState([]);
+  const [dobInput, setDobInput] = useState("");
   const [mainSection, setMainSection] = useState("block");
   const [luckyNoInput, setLuckyNoInput] = useState(0);
   const [output, setOutput] = useState("");
@@ -31,6 +31,7 @@ export default function App() {
   };
 
   function onClickHandler(e) {
+    e.preventDefault();
     const dobArray = dobInput.split("-");
     if (dobArray[0] >= 9999) {
       setOutput(
@@ -120,30 +121,31 @@ export default function App() {
               </span>
             </div>
           </div>
+          <form onSubmit={onClickHandler}>
+            <label>Date of Birth</label>
+            <input
+              required
+              className="inputBox"
+              type="date"
+              onChange={(event) => {
+                setDobInput(event.target.value);
+              }}
+            ></input>
 
-          <label>Date of Birth</label>
-          <input
-            className="inputBox"
-            type="date"
-            required
-            onChange={(event) => {
-              setDobInput(event.target.value);
-            }}
-          ></input>
+            <label>Your Lucky Number</label>
+            <input
+              className="inputBox"
+              type="Number"
+              min="1"
+              step="1"
+              required
+              onChange={(event) => {
+                setLuckyNoInput(event.target.value);
+              }}
+            ></input>
 
-          <label>Your Lucky Number</label>
-          <input
-            className="inputBox"
-            type="Number"
-            min="1"
-            step="1"
-            required
-            onChange={(event) => {
-              setLuckyNoInput(event.target.value);
-            }}
-          ></input>
-
-          <button onClick={onClickHandler}>Check</button>
+            <button type="submit">Check</button>
+          </form>
         </div>
         <div>{output}</div>
 
