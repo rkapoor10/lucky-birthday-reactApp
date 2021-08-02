@@ -3,6 +3,7 @@ import "./styles.css";
 import Lottie from "react-lottie";
 import lucky from "./lotties/lucky.json";
 import notLucky from "./lotties/notLucky.json";
+import cake from "/src/cake.svg";
 
 export default function App() {
   const [alertBox, setAlertBox] = useState("flex");
@@ -28,7 +29,7 @@ export default function App() {
     }
   };
 
-  function onClickHandler() {
+  function onClickHandler(e) {
     const dobArray = dobInput.split("-");
     if (dobArray[0] >= 9999) {
       setOutput(
@@ -52,7 +53,7 @@ export default function App() {
             <div>
               <Lottie options={luckyOptions} height={200} width={200} />
             </div>
-            <div>You are a lucky person</div>
+            <div className="message">You are a lucky person !</div>
           </>
         );
       } else {
@@ -61,9 +62,9 @@ export default function App() {
             <div>
               <Lottie options={notLuckyOptions} height={200} width={200} />
             </div>
-            <div>
-              But remember "Luck is what happens when preparation meets
-              opportunity!"
+            <div style={{ fontSize: "1.2rem" }}>Not it's Not</div>
+            <div className="message">
+              But Luck is what happens when preparation meets opportunity!
             </div>
           </>
         );
@@ -73,48 +74,64 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Check if your Birthday is Lucky?</h1>
-      <div className="box" style={{ display: `${alertBox}` }}>
-        <strong>Privacy: We are not storing your DOB</strong>
-        <div
-          onClick={() => {
-            setAlertBox("none");
-          }}
-          style={{
-            cursor: "pointer",
-            paddingLeft: "1.7rem",
-            fontSize: "0.7rem"
-          }}
-        >
-          <span role="img" aria-labelledby="crossIcon">
-            ❌
-          </span>
-        </div>
+      <div className="container">
+        <h1>
+          Is Your Birthday <span style={{ fontSize: "3rem" }}>Lucky ?</span>
+        </h1>
+        <img alt="cake" src={cake} width="100%" height="200px" />
+
+        <a className="clickScroll" href="#main">
+          {" "}
+          click to check{" "}
+        </a>
       </div>
 
       {/* scroll down feature to be added */}
-      <input
-        type="date"
-        required
-        onChange={(event) => {
-          setDobInput(event.target.value);
-        }}
-      ></input>
-      <br />
-      <br />
-      <label>Enter Your Lucky Number</label>
-      <input
-        type="Number"
-        min="1"
-        step="1"
-        required
-        onChange={(event) => {
-          setLuckyNoInput(event.target.value);
-        }}
-      ></input>
-      <br />
-      <button onClick={onClickHandler}>Check</button>
-      <div>{output}</div>
+      <div id="main" className="container">
+        <h2>Enter the details </h2>
+        <div className="box" style={{ display: `${alertBox}` }}>
+          <strong>Privacy &nbsp;</strong> We are not storing your DOB
+          <div
+            onClick={() => {
+              setAlertBox("none");
+            }}
+            style={{
+              cursor: "pointer",
+              paddingLeft: "1.7rem",
+              fontSize: "0.7rem"
+            }}
+          >
+            <span role="img" aria-labelledby="crossIcon">
+              ❌
+            </span>
+          </div>
+        </div>
+
+        <label>Date of Birth</label>
+        <input
+          className="inputBox"
+          type="date"
+          required
+          onChange={(event) => {
+            setDobInput(event.target.value);
+          }}
+        ></input>
+
+        <label>Your Lucky Number</label>
+        <input
+          className="inputBox"
+          type="Number"
+          min="1"
+          step="1"
+          required
+          onChange={(event) => {
+            setLuckyNoInput(event.target.value);
+          }}
+        ></input>
+
+        <button onClick={onClickHandler}>Check</button>
+        <div>{output}</div>
+      </div>
     </div>
   );
 }
