@@ -102,9 +102,7 @@ export default function App() {
 
       {/* scroll down feature to be added */}
       <div id="main" className="container">
-        <div style={{ display: `${mainSection}` }}>
-          <h2>Enter the details </h2>
-          <div className="box" style={{ display: `${alertBox}` }}>
+      <div className="box" style={{ display: `${alertBox}` }}>
             <strong>Privacy &nbsp;</strong> We are not storing your DOB
             <div
               onClick={() => {
@@ -121,6 +119,9 @@ export default function App() {
               </span>
             </div>
           </div>
+        <div style={{ display: `${mainSection}` }}>
+          <h2>Enter the details </h2>
+          
           <form onSubmit={onClickHandler}>
             <label>Date of Birth</label>
             <input
