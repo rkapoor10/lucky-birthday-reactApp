@@ -43,7 +43,9 @@ export default function App() {
       setMainSection("none");
       let sum = 0;
       dobArray.map((element) => {
-        sum = sum + Number(element);
+        for (let i = 0; i < element.length; i++) 
+        {
+        sum = sum + Number(element[i]);}
         return sum;
       });
       console.log(sum);
